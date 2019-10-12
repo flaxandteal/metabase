@@ -32,6 +32,50 @@
   color: inherit !important;
 }
 
+.Calendar-day--bin-0 {
+  background-color: color(var(--color-accent1) alpha(0%));
+}
+
+.Calendar-day--bin-1 {
+  background-color: color(var(--color-accent1) alpha(10%));
+}
+
+.Calendar-day--bin-2 {
+  background-color: color(var(--color-accent1) alpha(20%));
+}
+
+.Calendar-day--bin-3 {
+  background-color: color(var(--color-accent1) alpha(30%));
+}
+
+.Calendar-day--bin-4 {
+  background-color: color(var(--color-accent1) alpha(40%));
+}
+
+.Calendar-day--bin-5 {
+  background-color: color(var(--color-accent1) alpha(50%));
+}
+
+.Calendar-day--bin-6 {
+  background-color: color(var(--color-accent1) alpha(60%));
+}
+
+.Calendar-day--bin-7 {
+  background-color: color(var(--color-accent1) alpha(70%));
+}
+
+.Calendar-day--bin-8 {
+  background-color: color(var(--color-accent1) alpha(80%));
+}
+
+.Calendar-day--bin-9 {
+  background-color: color(var(--color-accent1) alpha(90%));
+}
+
+.Calendar-day--bin-10 {
+  background-color: color(var(--color-accent1) alpha(100%));
+}
+
 .Calendar-day--selected,
 .Calendar-day--selected-end {
   color: white !important;

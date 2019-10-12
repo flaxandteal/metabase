@@ -13,6 +13,7 @@ export default class Calendar extends Component {
     super(props);
     this.state = {
       current: moment(props.initial || undefined),
+      bins: props.bins || {},
     };
   }
 
@@ -21,6 +22,7 @@ export default class Calendar extends Component {
     selectedEnd: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     isRangePicker: PropTypes.bool,
+    bins: PropTypes.object
   };
 
   static defaultProps = {
@@ -144,6 +146,7 @@ export default class Calendar extends Component {
           onClickDay={this.onClickDay}
           selected={this.props.selected}
           selectedEnd={this.props.selectedEnd}
+          bins={this.props.bins}
         />,
       );
       date.add(1, "w");
@@ -179,14 +182,15 @@ class Week extends Component {
     selected: PropTypes.object,
     selectedEnd: PropTypes.object,
     onClickDay: PropTypes.func.isRequired,
+    bins: PropTypes.object,
   };
 
   render() {
     const days = [];
-    let { date, month, selected, selectedEnd } = this.props;
+    let { date, month, selected, selectedEnd, bins } = this.props;
 
     for (let i = 0; i < 7; i++) {
-      const classes = cx("Calendar-day p1 cursor-pointer text-centered", {
+      var classSet = {
         "Calendar-day--today": date.isSame(new Date(), "day"),
         "Calendar-day--this-month": date.month() === month.month(),
         "Calendar-day--selected": selected && date.isSame(selected, "day"),
@@ -201,10 +205,18 @@ class Week extends Component {
             (selectedEnd &&
               selectedEnd.isAfter(date, "day") &&
               date.isAfter(selected, "day"))),
-      });
+      };
+      const dateString = date.toString();
+
+      if (dateString in bins) {
+        classSet["Calendar-day--bin-" + bins[dateString]] = true;
+      }
+
+      const classes = cx("Calendar-day p1 cursor-pointer text-centered", classSet);
+
       days.push(
         <span
-          key={date.toString()}
+          key={dateString}
           className={classes}
           onClick={this.props.onClickDay.bind(null, date)}
         >
